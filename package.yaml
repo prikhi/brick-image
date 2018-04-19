@@ -1,7 +1,7 @@
 name:                brick-image
 version:             0.1.0.0
 github:              "prikhi/brick-image"
-license:             GPL-3.0
+license:             GPL-3
 author:              "Pavan Rikhi"
 maintainer:          "pavan.rikhi@gmail.com"
 copyright:           "GPL-3.0"
@@ -25,7 +25,6 @@ ghc-options:
   - -Wincomplete-record-updates
   - -Wincomplete-uni-patterns
   - -Wredundant-constraints
-  - -Werror
 
 dependencies:
   - base >= 4.7 && < 5
