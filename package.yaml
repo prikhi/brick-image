@@ -5,19 +5,23 @@ license:             GPL-3
 author:              "Pavan Rikhi"
 maintainer:          "pavan.rikhi@gmail.com"
 copyright:           "GPL-3.0"
+synopsis:            Show images in your Brick UI with w3mimgdisplay.
+category:            Graphics
 
 extra-source-files:
   - README.md
   - ChangeLog.md
 
-# Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
 
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on Github at <https://github.com/prikhi/brick-image#readme>
+description: |
+    This package provides an `ImageWidget` for displaying real images in a
+    Brick application, using `w3mimgdisplay`.
+
+    For more information, please see the Module documentation or the README on
+    at <https://github.com/prikhi/brick-image#readme>.
 
 ghc-options:
   - -Wall
@@ -51,6 +55,11 @@ executables:
       - -with-rtsopts=-N
     dependencies:
       - brick-image
+      - brick
+      - directory
+      - lens
+      - vector
+      - vty
 
 tests:
   brick-image-test:
