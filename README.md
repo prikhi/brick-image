@@ -1,5 +1,7 @@
 # brick-image
 
+[![brick-image's Travis-CI Build Status](https://travis-ci.org/prikhi/brick-image.svg?branch=master)](https://travis-ci.org/prikhi/brick-image "brick-image on travis-ci.org")
+
 Render raw images as [Brick](https://github.com/jtdaugherty/brick) widgets
 using [w3mimgdisplay](https://github.com/tats/w3m/blob/master/w3mimgdisplay.c).
 
@@ -74,6 +76,7 @@ Release on hackage/stackage once working properly
     * http://taylor.fausak.me/haskell-package-checklist/
     * http://fvisser.nl/post/2013/may/28/towards-a-better-haskell-package.html
     * https://wiki.haskell.org/How_to_write_a_Haskell_program
+    * How to release on hackage & stackage?
 
 
 ## LICENSE
