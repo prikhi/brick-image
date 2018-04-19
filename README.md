@@ -3,7 +3,9 @@
 Render raw images as [Brick](https://github.com/jtdaugherty/brick) widgets
 using [w3mimgdisplay](https://github.com/tats/w3m/blob/master/w3mimgdisplay.c).
 
-This is a super-rough, potentially buggy first attempt at making this work.
+![A screenshot of a terminal running the example brick-image application, showing a list of files and an image preview of the currently selected file.](/screenshot.png?raw=true "brick-image Example Image Viewer")
+
+This is a super-rough, buggy first attempt at making this work.
 
 You will need to have `w3m` installed.
 
@@ -16,14 +18,17 @@ for my terminal font. And the image isn't always completed cleaned up when
 changed.
 
 There is a small example app in `example/` that implements an Image Viewer for
-the current using Image & List widgets:
+the current directory using Image & List widgets:
 
+    stack build
     # Assuming you have image files in ~/Pictures
     cp ~/Pictures/*.jpg .
     stack exec brick-image-example
 
 
 ## TODO
+
+Comments, design feedback, PRs, & bug reports are all appreciated.
 
 Decouple the row/column->pixel conversion from my terminal font.
 
