@@ -10,7 +10,6 @@ import Data.Maybe (fromMaybe, listToMaybe)
 import System.Directory
 
 import qualified Brick.Widgets.Border as B
-import qualified Brick.Widgets.Center as C
 import qualified Data.Vector as Vec
 import qualified Graphics.Vty as V
 
@@ -25,6 +24,7 @@ data AppWidget
 data AppState
     = AppState
          { fileList :: List AppWidget FilePath
+         , longestFileName :: Int
          , imagePreview :: ImageWidget AppWidget
          }
 
@@ -40,6 +40,7 @@ initialize = do
     files <- filter isImageFile <$> (getCurrentDirectory >>= listDirectory)
     let fileList = list FileList (Vec.fromList files) 1
         firstFile = fromMaybe "" $ listToMaybe files
+        longestFileName = maximum $ map length files
     imagePreview <- imageWidgetIO ImagePreview firstFile
     return AppState {..}
 
@@ -56,10 +57,13 @@ app =
 draw :: AppState -> [Widget AppWidget]
 draw AppState {..} =
     [ B.borderWithLabel (str " Image Preview ") $ hBox
-        [ padRight (Pad 1) $ renderList (const (padRight Max . str)) True fileList
-        , C.hCenter $ renderImageWidget imagePreview
+        [ hLimit (longestFileName + 1) $ renderList renderFileName True fileList
+        , renderImageWidget imagePreview
         ]
     ]
+    where
+        renderFileName _ =
+            padRight Max . str
 
 handleEvent :: AppState -> BrickEvent AppWidget AppEvent -> EventM AppWidget (Next AppState)
 handleEvent s e = case e of
@@ -76,7 +80,7 @@ handleEvent s e = case e of
                     return $ imagePreview s
             Nothing ->
                 return $ imagePreview s
-        continue AppState {..}
+        continue s { fileList = fileList, imagePreview = imagePreview }
     _ ->
         continue s
 

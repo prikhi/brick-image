@@ -56,13 +56,16 @@ arguments to launched process.
 Module/usage documentation.
 
 Tests
+
     * ensure command output has correct number of fields
+    * ensure setting parameter sets correct output field
 
 Stick un-exported functions into `Internal` modules.
 
 Split into a `w3mimgdisplay` package & a `brick-image` package.
 
 Release on hackage/stackage once working properly
+
     * http://taylor.fausak.me/haskell-package-checklist/
     * http://fvisser.nl/post/2013/may/28/towards-a-better-haskell-package.html
     * https://wiki.haskell.org/How_to_write_a_Haskell_program
