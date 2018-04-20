@@ -40,28 +40,35 @@ Decouple the row/column->pixel conversion from my terminal font:
   http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
 * Also `xtermctl` or terminfo
   https://stackoverflow.com/questions/22782703/how-to-get-terminal-size-or-font-size-in-pixels
+* The `w3mimgdisplay -test` command returns the width & height of the terminal
+  in pixels. Maybe use that if we can get total rows/columns from Vty module?
 
 Figure out when we should be using the `RedrawImage` command.
 
-Figure out why Brick doesn't trigger lost/gained focus events for me. Is it
-urxvt or xmonad?
-
 Fix the brick widget rendering - when side-by-side w/ a list widget that
 changes the selected items color, a line will be missing from the image
-whenever the list is scrolled. This is visible in the example app.
+whenever the list is scrolled. This is visible in the example app. I was able
+to fix this by adding a delay before calling w3mimgdisplay `forkIO $
+threadDelay 50000 >> imageDisplay i` but that seems like a very hacky solution.
 
 Fix the brick widget clearing - sometimes a tiny sliver of the bottom or left
 of the image doesn't get cleared when changing the file path. Probably requires
 sending `TerminateDrawing` via the "server" described below. This is visible in
 the example app.
 
+Fix image rendering on startup. Images aren't displayed on app startup becaue
+their viewports have no extents yet. Not sure how to work around this, seems
+like we'd need to trigger an update after the initial rendering... This is
+visible in the example app.
+
 Work on the library interface, it's currently just the minimum I needed to make it
 work.
 
 Have `W3mImgDisplay` implement a "server" that keeps a long-running
-w3mimgdisplay process open & feeds it Commands received from a Chan or TChan.
-Maybe it could manage moving images, clearing specific images, etc. This might
-be required for perfectly cleaning up an image.
+w3mimgdisplay process open & feeds it Commands received from a Chan or
+TChan(might need this for clearing images correctly).
+Eventually it could have a really high-level interface that manages images &
+moving/clearing/layering them, etc.
 
 Figure out potential arguments by inspecting `w3mimgdisplay` source - add
 `Options` or `Config` type & `runWithOptions` that allows library users to pass
@@ -84,6 +91,8 @@ Release on hackage/stackage once working properly
     * http://fvisser.nl/post/2013/may/28/towards-a-better-haskell-package.html
     * https://wiki.haskell.org/How_to_write_a_Haskell_program
     * How to release on hackage & stackage?
+
+Lofty goals would be eventually re-implementing w3mimgdisplay in Haskell.
 
 
 ## LICENSE
