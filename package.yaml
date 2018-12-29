@@ -13,12 +13,10 @@ extra-source-files:
   - ChangeLog.md
 
 
-# To avoid duplicated efforts in documentation and dealing with the
-# complications of embedding Haddock markup inside cabal files, it is
-# common to point users to the README.md file.
 description: |
     This package provides an `ImageWidget` for displaying real images in a
     Brick application, using `w3mimgdisplay`.
+
 
     For more information, please see the Module documentation or the README on
     at <https://github.com/prikhi/brick-image#readme>.
@@ -36,14 +34,14 @@ dependencies:
 library:
   source-dirs: src
   dependencies:
-    - brick
-    - conduit
-    - data-default
-    - directory
-    - imagesize-conduit
-    - lens
-    - typed-process
-    - vty
+    - brick >=0.34
+    - conduit >=1 && <2
+    - data-default >=0.7 && <1
+    - directory >=1.3 && <2
+    - imagesize-conduit >=1.1
+    - lens >=4.16 && <5
+    - typed-process >=0.2 && <0.3
+    - vty >=5.20
 
 executables:
   brick-image-example:
@@ -55,11 +53,11 @@ executables:
       - -with-rtsopts=-N
     dependencies:
       - brick-image
-      - brick
-      - directory
-      - lens
-      - vector
-      - vty
+      - brick >=0.34
+      - directory >= 1.3 && <2
+      - lens >=4.16 && <5
+      - vector >=0.12 && <0.13
+      - vty >=5.20
 
 tests:
   brick-image-test:
