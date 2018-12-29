@@ -72,9 +72,11 @@ Tests
     * ensure command output has correct number of fields
     * ensure setting parameter sets correct output field
 
-Stick un-exported functions into `Internal` modules.
+Stick un-exported functions into `Internal` modules?
 
-Split into a `w3mimgdisplay` package & a `brick-image` package.
+Rename github repo to `hs-w3mimgdisplay`.
+
+Remove unnecessary dependencies
 
 Release on hackage/stackage once working properly
 
