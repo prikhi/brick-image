@@ -32,12 +32,14 @@ the current directory using Image & List widgets:
 
 Comments, design feedback, PRs, & bug reports are all appreciated.
 
-Decouple the row/column->pixel conversion from my terminal font. Quick, hacky
-version: `xrdb -q | grep -i font` will let us grab the font from xresources,
-`XLoadQueryFont` will let us grab size details. Also see xterm control sequence
-`\e[14t`: http://invisible-island.net/xterm/ctlseqs/ctlseqs.html Also
-`xtermctl` or terminfo
-https://stackoverflow.com/questions/22782703/how-to-get-terminal-size-or-font-size-in-pixels
+Decouple the row/column->pixel conversion from my terminal font:
+
+* Quick, hacky version: `xrdb -q | grep -i font` will let us grab the font from
+  xresources, `XLoadQueryFont` will let us grab size details.
+* See xterm control sequence `\e[14t`:
+  http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+* Also `xtermctl` or terminfo
+  https://stackoverflow.com/questions/22782703/how-to-get-terminal-size-or-font-size-in-pixels
 
 Figure out when we should be using the `RedrawImage` command.
 
@@ -75,8 +77,6 @@ Tests
 Stick un-exported functions into `Internal` modules?
 
 Rename github repo to `hs-w3mimgdisplay`.
-
-Remove unnecessary dependencies
 
 Release on hackage/stackage once working properly
 
