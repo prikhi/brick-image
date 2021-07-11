@@ -35,7 +35,7 @@ import Data.Default (Default(def))
 import Data.List (intercalate)
 import Data.Maybe (isJust)
 import System.Directory (findExecutable, canonicalizePath)
-import System.Process.Typed (proc, setStdin, setStdout, byteStringOutput, createPipe, withProcess, getStdin)
+import System.Process.Typed (proc, setStdin, setStdout, byteStringOutput, createPipe, withProcessTerm, getStdin)
 import System.IO (hPutStrLn, hClose)
 
 
@@ -87,7 +87,7 @@ runWithStdIn commands =
                 $ setStdout byteStringOutput
                 $ proc "w3mimgdisplay" []
     in
-        liftIO . withProcess config $ \p -> do
+        liftIO . withProcessTerm config $ \p -> do
             let stdin = getStdin p
             hPutStrLn stdin commands
             hClose stdin
